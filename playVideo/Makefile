@@ -1,4 +1,4 @@
-TARGET = a.out
+TARGET = playVideo
 
 CC = g++
 CFLAGS = -g -O0 -Wall -W
