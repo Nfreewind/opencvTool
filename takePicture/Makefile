@@ -1,4 +1,4 @@
-TARGET = a.out
+TARGET = takePicture
 
 CC = g++
 CFLAGS = -g -O0 -Wall -W
