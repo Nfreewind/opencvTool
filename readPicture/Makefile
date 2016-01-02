@@ -1,4 +1,4 @@
-TARGET = a.out
+TARGET = readPicture
 
 CC = g++
 CFLAGS = -g -O0 -Wall -W
