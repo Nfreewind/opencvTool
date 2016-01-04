@@ -1,7 +1,7 @@
 TARGET = readPicture
 
-CC = g++
-CFLAGS = -g -O0 -Wall -W
+CXX = g++
+CXXFLAGS = -g -O0 -Wall -W
 LDFLAGS =
 RM = rm -rf
 SRCS = $(wildcard *.cpp)
@@ -9,7 +9,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 LIBS = opencv
 ifneq ($(LIBS),)
-CFLAGS += $(shell pkg-config --cflags $(LIBS))
+CXXFLAGS += $(shell pkg-config --cflags $(LIBS))
 LDFLAGS += $(shell pkg-config --libs $(LIBS))
 endif
 
@@ -18,10 +18,10 @@ endif
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
 %.o: %.cpp
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 clean:
 	$(RM) *.o $(TARGET)
