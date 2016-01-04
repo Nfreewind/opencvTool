@@ -19,7 +19,7 @@ void version()
         << "\nSubminor: " << CV_SUBMINOR_VERSION << endl;
 }
 
-int main(int argc, const char *argv[])
+int main(int argc, char** argv)
 {
     version();
     return 0;
