@@ -19,15 +19,22 @@ int main(int argc, char** argv)
     VideoCapture cap;
     VideoWriter outputVideo;
     int start_record = 0;
-    int fourcc = 828601953; // avc1
+    int fourcc;
+    int fps;
     Size size;
 
     help();
     cap.open(0);
 
     filename = "output.avi";
+    fourcc = 828601953; // avc1
+    fps = cap.get(CAP_PROP_FPS);
     size = Size((int) cap.get(CAP_PROP_FRAME_WIDTH), (int) cap.get(CAP_PROP_FRAME_HEIGHT));
-    outputVideo.open(filename, fourcc, cap.get(CAP_PROP_FPS), size, true);
+    cout << "Width: " << size.width << " Height: " << size.height << endl;
+    cout << "fps: " << fps << endl;
+    if (fps == 0)
+        fps = 30;
+    outputVideo.open(filename, fourcc, fps, size, true);
     namedWindow("view", WINDOW_AUTOSIZE);
     while (1) {
         cap.read(image);
