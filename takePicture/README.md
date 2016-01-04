@@ -1,2 +1,2 @@
-# take picture
-this program is used to take a picture and save the image
+# Take Picture
+This program is used to take a picture and save the image
