@@ -1,3 +1,6 @@
+# Record Video
+This program is used to record video
+
 # Codec
 
     CV_FOURCC('P', 'I', 'M', '1') = MPEG-1 codec
