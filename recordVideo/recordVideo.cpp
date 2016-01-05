@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     cap.open(0);
 
     filename = "output.avi";
-    fourcc = 828601953; // avc1
+    fourcc = CV_FOURCC('D', 'I', 'V', 'X');
     fps = cap.get(CAP_PROP_FPS);
     size = Size((int) cap.get(CAP_PROP_FRAME_WIDTH), (int) cap.get(CAP_PROP_FRAME_HEIGHT));
     cout << "Width: " << size.width << " Height: " << size.height << endl;
