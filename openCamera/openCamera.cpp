@@ -28,7 +28,7 @@ int main(int argc, char** argv)
     cout << "Width: " << width << " Height: " << height << endl;
     fps = cap.get(CAP_PROP_FPS);
     cout << "fps: " << fps << endl;
-    
+
     namedWindow("view", WINDOW_AUTOSIZE);
     while (1) {
         cap.read(image);
