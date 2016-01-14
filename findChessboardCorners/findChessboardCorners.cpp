@@ -4,39 +4,54 @@
 using namespace std;
 using namespace cv;
 
-int main(int argc, char** argv)
+void saveImage(Mat image)
+{
+    static int count = 0;
+    string filename;
+    stringstream ss;
+
+    ss << count;
+    filename = "image" + ss.str() + ".jpg";
+    imwrite(filename, image);
+    cout << "write to " << filename << " ..." << endl;
+    count++;
+}
+
+int main(void)
 {
     VideoCapture cap;
+    Mat image, show_image;
+    vector<Point2f> points;
     Size boardSize;
+
     boardSize.width = 9;
     boardSize.height = 6;
-
-    cout << "board width: " << boardSize.width << "\nboard height: " << boardSize.height << endl;
+    cout << "board width: " << boardSize.width << ", board height: " << boardSize.height << endl;
     cap.open(0);
     cap.set(CAP_PROP_FRAME_WIDTH, 640);
     cap.set(CAP_PROP_FRAME_HEIGHT, 480);
     namedWindow("view", WINDOW_AUTOSIZE);
 
     while (1) {
-        Mat image, gray;
-        vector<Point2f> points;
-
         cap >> image;
-        cvtColor(image, gray, COLOR_BGR2GRAY);
 
         bool found;
         found = findChessboardCorners(image, boardSize, points,
-                CALIB_CB_ADAPTIVE_THRESH | CALIB_CB_FAST_CHECK | CALIB_CB_NORMALIZE_IMAGE);
+                CALIB_CB_ADAPTIVE_THRESH | CALIB_CB_NORMALIZE_IMAGE | CALIB_CB_FAST_CHECK);
 
+        cout << "found: " << found << ", points: " << points.size() << endl;
+        image.copyTo(show_image);
         if (found)
-            drawChessboardCorners(image, boardSize, Mat(points), found);
+            drawChessboardCorners(show_image, boardSize, Mat(points), found);
 
-        imshow("view", image);
+        imshow("view", show_image);
 
         int key;
         key = waitKey(10);
         if (key == 'q' || key == 27)
             break;
+        if (key == 's' &&  found)
+            saveImage(image);
     }
 
     return 0;
