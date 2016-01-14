@@ -17,8 +17,8 @@ void saveImage(Mat image)
 {
     static int count = 1;
     string filename;
-
     stringstream ss;
+
     ss << count;
     filename = "image" + ss.str() + ".jpg";
     imwrite(filename, image);
