@@ -27,13 +27,21 @@ void saveImage(Mat image)
     count++;
 }
 
-int main(int argc, char** argv)
+int main()
 {
     Mat image;
     VideoCapture cap;
+    int width = 640;
+    int height = 480;
+    int fps;
 
     help();
     cap.open(0);
+    cap.set(CAP_PROP_FRAME_WIDTH, width);
+    cap.set(CAP_PROP_FRAME_HEIGHT, height);
+    fps = cap.get(CAP_PROP_FPS);
+    cout << "Width: " << width << ", Height: " << height << ", FPS: " << fps << endl;
+
     namedWindow("view", WINDOW_AUTOSIZE);
 
     while (1) {
@@ -41,7 +49,7 @@ int main(int argc, char** argv)
         imshow("view", image);
 
         int key;
-        key = waitKey(10);
+        key = waitKey(1);
         if (key == 'q' || key == 27)
             break;
         if (key == 's') {
