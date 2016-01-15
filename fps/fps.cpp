@@ -10,10 +10,11 @@ int main()
     int width = 640;
     int height = 480;
     Mat image;
-    time_t start, end;
+    double start;
+    double end;
+    double sec;
     double fps;
     int counter = 0;
-    double sec;
 
     cap.open(0);
     cap.set(CAP_PROP_FRAME_WIDTH, width);
@@ -22,14 +23,14 @@ int main()
     cout << "Width: " << width << ", Height: " << height << ", FPS: " << fps << endl;
 
     namedWindow("view", WINDOW_AUTOSIZE);
-    time(&start);
+    start = (double)getTickCount();
 
     while (1) {
         cap.read(image);
         imshow("view", image);
-        time(&end);
+        end = (double)getTickCount();
         counter++;
-        sec = difftime(end, start);
+        sec = (end - start) / getTickFrequency();
         fps = counter / sec;
         cout << "Count: " << counter << ", FPS: " << fps << endl;
 
