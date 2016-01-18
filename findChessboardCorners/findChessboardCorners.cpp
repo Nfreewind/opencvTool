@@ -6,7 +6,7 @@ using namespace cv;
 
 void saveImage(Mat image)
 {
-    static int count = 0;
+    static int count = 1;
     string filename;
     stringstream ss;
 
