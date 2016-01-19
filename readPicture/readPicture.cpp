@@ -9,7 +9,7 @@ void help()
 {
     cout << "\nThis program is used to read picture\n"
         "Usage:\n"
-        "./readPicture [image_name]\n";
+        "./readPicture [image_name]\n\n";
 }
 
 int main(int argc, char** argv)
