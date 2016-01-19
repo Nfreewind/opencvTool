@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <iomanip>
 #include "opencv2/opencv.hpp"
 
 using namespace std;
@@ -10,7 +13,7 @@ void saveImage(Mat image)
     string filename;
     stringstream ss;
 
-    ss << count;
+    ss << setfill('0') << setw(4) << count;
     filename = "image" + ss.str() + ".jpg";
     imwrite(filename, image);
     cout << "write to " << filename << " ..." << endl;
