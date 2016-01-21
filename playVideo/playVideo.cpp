@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 #include "opencv2/opencv.hpp"
 
 using namespace std;
@@ -10,7 +12,7 @@ void help()
         "Usage:\n"
         "./playVideo [video_name]\n"
         "  Save image:        press s\n"
-        "  Exit the program:  press q or ESC\n";
+        "  Exit the program:  press q or ESC\n\n";
 }
 
 void saveImage(Mat image)
