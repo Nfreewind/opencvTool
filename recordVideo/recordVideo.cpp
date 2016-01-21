@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "opencv2/opencv.hpp"
 
 using namespace std;
@@ -9,7 +10,7 @@ void help()
     cout << "\nThis program is used to record video\n"
         "Usage:\n"
         "  Record video:      press r\n"
-        "  Exit the program:  press q or ESC\n";
+        "  Exit the program:  press q or ESC\n\n";
 }
 
 int main(int argc, char** argv)
