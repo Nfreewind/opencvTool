@@ -8,7 +8,7 @@ void help()
 {
     cout << "\nThis program is used to convert color image to gray image\n"
         "Usage:\n"
-        "./readPicture [image_name]\n";
+        "./grayscale [image_name]\n\n";
 }
 
 int main(int argc, char** argv)
@@ -22,12 +22,14 @@ int main(int argc, char** argv)
     }
     filename = argv[1];
     image = imread(filename, IMREAD_COLOR);
-    cvtColor(image, image_gray, COLOR_BGR2GRAY);
 
     namedWindow("view", WINDOW_AUTOSIZE);
-    moveWindow("view", 100, 100);
-    imshow("view", image_gray);
+    imshow("view", image);
+    waitKey(0);
 
+    cvtColor(image, image_gray, COLOR_BGR2GRAY);
+
+    imshow("view", image_gray);
     imwrite("saved.jpg", image_gray);
     waitKey(0);
 
