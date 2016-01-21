@@ -13,7 +13,7 @@ void help()
         "  Exit the program:  press q or ESC\n\n";
 }
 
-int main(int argc, char** argv)
+int main()
 {
     Mat image;
     string filename;
