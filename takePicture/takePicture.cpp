@@ -12,7 +12,7 @@ void help()
     cout << "\nThis program is used to take picture\n"
         "Usage:\n"
         "  Save image:        press s\n"
-        "  Exit the program:  press q or ESC\n";
+        "  Exit the program:  press q or ESC\n\n";
 }
 
 void saveImage(Mat image)
