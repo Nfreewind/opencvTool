@@ -53,7 +53,7 @@ int main(void)
         key = waitKey(10);
         if (key == 'q' || key == 27)
             break;
-        if (key == 's' &&  found)
+        if (key == 's' && found)
             saveImage(image);
     }
 
