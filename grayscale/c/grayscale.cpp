@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <cv.h>
 #include <cxcore.h>
 #include <highgui.h>
