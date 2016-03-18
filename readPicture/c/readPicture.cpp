@@ -6,7 +6,7 @@ void help()
 {
     printf("\nThis program is used to read picture\n"
             "Usage:\n"
-            "./readPicture [image_name]\n\n");
+            "./readPicture image_name\n\n");
 }
 
 void printImageInfo(IplImage *image)

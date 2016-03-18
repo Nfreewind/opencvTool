@@ -9,7 +9,7 @@ void help()
 {
     cout << "\nThis program is used to convert color image to other color space\n"
         "Usage:\n"
-        "./colorSpace [image_name]\n\n";
+        "./colorSpace image_name\n\n";
 }
 
 int main(int argc, char** argv)

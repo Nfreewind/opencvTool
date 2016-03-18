@@ -10,7 +10,7 @@ void help()
 {
     cout << "\nThis program is used to play video\n"
         "Usage:\n"
-        "./playVideo [video_name]\n"
+        "./playVideo video_name\n"
         "  Save image:        press s\n"
         "  Exit the program:  press q or ESC\n\n";
 }

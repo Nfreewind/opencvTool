@@ -9,7 +9,7 @@ void help()
 {
     cout << "\nThis program is used to convert color image to gray image\n"
         "Usage:\n"
-        "./grayscale [image_name]\n\n";
+        "./grayscale image_name\n\n";
 }
 
 int main(int argc, char** argv)

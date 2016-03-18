@@ -16,7 +16,7 @@ void help()
 {
     cout << "\nThis program is used to make a perspective transformation on an image using homography and overlay it onto the other image.\n"
         "Usage:\n"
-        "./findHomography [main_image_name] [image_name]\n\n";
+        "./findHomography main_image_name image_name\n\n";
 }
 
 // Function to add main image and transformed logo image and show final output.

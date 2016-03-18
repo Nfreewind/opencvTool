@@ -7,7 +7,7 @@ void help()
 {
     printf("\nThis program is used to convert color image to gray image\n"
             "Usage:\n"
-            "./grayscale [image_name]\n\n");
+            "./grayscale image_name\n\n");
 }
 
 void gray(IplImage *image, IplImage *image_gray)
