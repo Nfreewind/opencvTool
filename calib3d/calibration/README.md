@@ -4,15 +4,16 @@ This is a camera calibration program.
 # How to Use
 camera calibration
 ```
-./calibration -w=9 -h=6 -o=camera.yml
+./calibration -w=9 -h=6 -n=20 -o=camera.yml
 
 ```
 
 images calibration (read from image list)
 ```
-./calibration -w=9 -h=6 -n=5 -o=camera.yml image_list.xml -su
+./calibration -w=9 -h=6 -n=20 -o=camera.yml image_list.xml
 
 ```
+-su show undistorted images after calibration
 
 use asymmetric circles
 ```
