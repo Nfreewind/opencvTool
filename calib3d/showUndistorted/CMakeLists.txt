@@ -11,7 +11,10 @@ else()
     set(CMAKE_CXX_FLAGS_RELEASE "-W -Wall -O3 -std=c++11")
 endif()
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV)
+if(MSVC AND NOT OpenCV_FOUND)
+    message(FATAL_ERROR "help: set OpenCV_DIR to c:/opencv-x.x.x/build")
+endif()
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 file(GLOB SRCS ./*.cpp)
