@@ -10,6 +10,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 
 using namespace cv;
 using namespace std;
@@ -293,6 +296,18 @@ static bool runAndSave(const string& outputFilename,
     return ok;
 }
 
+void saveImage(Mat image)
+{
+    static int count = 1;
+    string filename;
+    stringstream ss;
+
+    ss << setfill('0') << setw(4) << count;
+    filename = "image" + ss.str() + ".jpg";
+    imwrite(filename, image);
+    cout << "write to " << filename << " ..." << endl;
+    count++;
+}
 
 int main( int argc, char** argv )
 {
@@ -461,6 +476,8 @@ int main( int argc, char** argv )
             imagePoints.push_back(pointbuf);
             prevTimestamp = clock();
             blink = capture.isOpened();
+            if (inputFilename == "")
+                saveImage(view);
         }
 
         if(found)
