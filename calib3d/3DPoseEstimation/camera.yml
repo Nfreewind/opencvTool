@@ -1,0 +1,24 @@
+%YAML:1.0
+calibration_time: "2016年01月18日 (週一) 15時42分35秒"
+image_width: 640
+image_height: 480
+board_width: 9
+board_height: 6
+square_size: 2.
+aspectRatio: 1.
+flags: 2
+camera_matrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 5.3135613707750304e+02, 0., 2.9443387147351439e+02, 0.,
+       5.3135613707750304e+02, 2.3732350958636709e+02, 0., 0., 1. ]
+distortion_coefficients: !!opencv-matrix
+   rows: 5
+   cols: 1
+   dt: d
+   data: [ -1.4452859970235657e-01, 2.2775257866738288e-01,
+       -9.5159613047248544e-04, -2.9157049765635031e-03,
+       -1.2961919590246759e-01 ]
+avg_reprojection_error: 3.2041031533044345e-01
+camera: "ps3eye"
