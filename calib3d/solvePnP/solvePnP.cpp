@@ -11,7 +11,12 @@ Scalar blue(255,0,0);
 Scalar yellow(0,255,255);
 
 Mat image;
+//#define TEST_PNP_RANSAC
+#ifndef TEST_PNP_RANSAC
 int nKeypoints = 4;
+#else
+int nKeypoints = 7;
+#endif
 vector<Point2f> imageKeypoints;
 
 void help()
@@ -21,6 +26,14 @@ void help()
         "./solvePnP image_name\n"
         "  then choose four points"
         "  Exit the program:                   press q or ESC\n\n";
+}
+
+void printInliers(Mat inliers)
+{
+    cout << "inliers=[ ";
+    for (int i = 0; i < inliers.rows; i++)
+        cout << inliers.at<int>(i) << " ";
+    cout << "]" << endl;
 }
 
 static void onMouse(int event, int x, int y, int flags, void* userdata)
@@ -44,6 +57,7 @@ int main(int argc, const char *argv[])
     Mat tvec = Mat(Size(3,1), CV_64F);
     vector<Point2f> imageFramePoints;
     vector<Point3f> model, framePoints;
+    Mat inliers;
 
     intrinsics = (Mat_<double>(3,3) <<
             700, 0, 320,
@@ -60,19 +74,38 @@ int main(int argc, const char *argv[])
     model.push_back(Point3f(1, 0, 0));
     model.push_back(Point3f(0, 0, 1));
     model.push_back(Point3f(1, 0, 1));
+#ifdef TEST_PNP_RANSAC
+    model.push_back(Point3f(0, 1, 0));
+    model.push_back(Point3f(1, 1, 0));
+    model.push_back(Point3f(1, 1, 1));
+#endif
 
     framePoints.push_back(Point3f(0.0, 0.0, 0.0));
     framePoints.push_back(Point3f(1.0, 0.0, 0.0));
     framePoints.push_back(Point3f(0.0, 1.0, 0.0));
     framePoints.push_back(Point3f(0.0, 0.0, 1.0));
 
+#ifndef TEST_PNP_RANSAC
     if (argc != 2) {
         help();
         return 1;
     }
     image = imread(argv[1], IMREAD_COLOR);
+#else
+    image = imread("box.png", IMREAD_COLOR);
+#endif
     namedWindow("view", CV_WINDOW_AUTOSIZE);
     setMouseCallback("view", onMouse, 0);
+
+#ifdef TEST_PNP_RANSAC
+    onMouse(EVENT_LBUTTONUP, 205, 202, 0, NULL);
+    onMouse(EVENT_LBUTTONUP, 304, 257, 0, NULL);
+    onMouse(EVENT_LBUTTONUP, 325, 163, 0, NULL);
+    onMouse(EVENT_LBUTTONUP, 426, 213, 0, NULL);
+    onMouse(EVENT_LBUTTONUP, 205, 311, 0, NULL);
+    onMouse(EVENT_LBUTTONUP, 316, 378, 0, NULL);//onMouse(EVENT_LBUTTONUP, 306, 368, 0, NULL);
+    onMouse(EVENT_LBUTTONUP, 424, 322, 0, NULL);
+#endif
 
     cvtColor(image, gray, COLOR_BGR2GRAY);
     bool found = false;
@@ -82,7 +115,13 @@ int main(int argc, const char *argv[])
         }
 
         if (found) {
+
+#ifndef TEST_PNP_RANSAC
             solvePnP(Mat(model), Mat(imageKeypoints), intrinsics, distortion, rvec, tvec, false);
+#else
+            solvePnPRansac(Mat(model), Mat(imageKeypoints), intrinsics, distortion, rvec, tvec, false, 100, 4.0, 0.99, inliers, 0);
+            printInliers(inliers);
+#endif
 
             projectPoints(framePoints, rvec, tvec, intrinsics, distortion, imageFramePoints);
 
